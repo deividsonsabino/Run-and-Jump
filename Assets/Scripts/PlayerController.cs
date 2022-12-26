@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnimator;
     private AudioSource playerAudio;
+    private int jumpLimit;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParicle;
     public AudioClip jumpSound, crashSound;
@@ -26,8 +27,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && !gameOver && jumpLimit < 2)
         {
+            jumpLimit += 1;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
             dirtParicle.Stop();
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             dirtParicle.Play();
             isOnGround = true;
+            jumpLimit = 0;
         } else if (collision.gameObject.CompareTag("Obstacle"))
         {
             playerAudio.PlayOneShot(crashSound, 1.0f);
