@@ -431,6 +431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2243d27c5f324438b3e6d465971b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleJumpUsed: 0
+  doubleJumpForce: 400
   explosionParticle: {fileID: 547665272}
   dirtParicle: {fileID: 1798076566}
   jumpSound: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
@@ -439,6 +441,7 @@ MonoBehaviour:
   gravityModifier: 1.5
   isOnGround: 1
   gameOver: 0
+  doubleSpeed: 0
 --- !u!4 &471439822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400066, guid: 4a7c3ad7168bb834b87a91e3f94ad3d6, type: 3}
@@ -825,6 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159cee3439d0ea442b45abb8b39e613c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
 --- !u!114 &835818923
 MonoBehaviour:
   m_ObjectHideFlags: 0
