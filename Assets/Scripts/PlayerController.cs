@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,44 +30,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOver && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && !gameOver && isOnGround)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playerAudio.PlayOneShot(jumpSound, 1.0f);
-                dirtParicle.Stop();
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isOnGround = false;
-                playerAnimator.SetTrigger("Jump_trig");
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
+            dirtParicle.Stop();
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+            playerAnimator.SetTrigger("Jump_trig");
 
-                doubleJumpUsed = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed)
-            {
-                doubleJumpUsed = true;
-                playerRb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
-                playerAnimator.Play("Running_Jump", 3, 0f);
-                playerAudio.PlayOneShot(jumpSound, 1.0f);
-            }
-
-            SetPlayerSpeed();
+            doubleJumpUsed = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed)
+        {
+            doubleJumpUsed = true;
+            playerRb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+            playerAnimator.Play("Running_Jump", 3, 0f);
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
 
-    }
-
-    private void SetPlayerSpeed()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             doubleSpeed = true;
             playerAnimator.SetFloat("Speed_Multiplier", 2.0f);
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (doubleSpeed)
         {
             doubleSpeed = false;
             playerAnimator.SetFloat("Speed_Multiplier", 1.0f);
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
