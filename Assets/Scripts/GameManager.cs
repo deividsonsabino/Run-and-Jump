@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float score;
-    public Text scoreText;
     public Transform startingPoint;
     public float lerpSpeed;
     private PlayerController playerControllerScript;
@@ -53,14 +52,12 @@ public class GameManager : MonoBehaviour
             if (playerControllerScript.doubleSpeed)
             {
                 score += 2;
-                scoreText.GetComponent<Text>().text = score.ToString();
             }
             else
             {
                 score++;
-                scoreText.GetComponent<Text>().text = score.ToString();
             }
-            Debug.Log("Score: " + score);
+            //Debug.Log("Score: " + score);
         }
     }
 }
