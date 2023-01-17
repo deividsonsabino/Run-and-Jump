@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnimator;
     private AudioSource playerAudio;
+    private float jumpForce = 800;
     public bool doubleJumpUsed = false;
     public float doubleJumpForce;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParicle;
     public AudioClip jumpSound, crashSound;
-    public float jumpForce = 10;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver;
